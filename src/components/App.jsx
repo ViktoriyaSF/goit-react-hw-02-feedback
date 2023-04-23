@@ -1,4 +1,9 @@
 import { Component } from 'react';
+import { GlobalStyle } from './BasicStyles/GlobalStyle';
+import { Layout } from './Layout/Layout';
+
+import { Section } from './Section/Section';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -7,26 +12,40 @@ export class App extends Component {
     bad: 0,
   };
 
-  handClick = evt => {
-    const { name, value } = evt.target;
-    // console.log('клік +1');
-    // console.log(evt.target);
-    // console.log(value);
+  //щоб рахувалась кнопка
+  onLeaveFeedback = evt => {
+    const { name } = evt.target;
     this.setState(prevState => ({ [name]: prevState[name] + 1 }));
   };
+
+  //підрахунок загальної суми
   countTotalFeedback = () => {
-    return this.state.good + this.state.neuter + this.state.bad;
+    return Object.values(this.state).reduce((previousValue, number) => {
+      return previousValue + number;
+    }, 0);
+  };
+
+  //підрахунок %% позитивних відгуків
+  countPositiveFeedbackPercentage = () => {
+    return this.state.good !== 0
+      ? Math.round((this.state.good / this.countTotalFeedback()) * 100)
+      : 0;
   };
 
   render() {
     return (
-      <div>
-        <h2>Please leave feedback</h2>
-        {Object.keys(this.state).map(name => (
-          <button key={name} name={name} onClick={this.handClick}>
-            {name}
-          </button>
-        ))}
+      <Layout>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
+          {/* {Object.keys(this.state).map(name => (
+            <button key={name} name={name} onClick={this.onLeaveFeedback}>
+              {name}
+            </button>
+          ))} */}
+        </Section>
         <h2>Statistics</h2>
         <ul>
           {Object.entries(this.state).map(name => (
@@ -35,7 +54,12 @@ export class App extends Component {
             </li>
           ))}
         </ul>
-      </div>
+        <p>Total: {this.countTotalFeedback(this.state)}</p>
+        <p>
+          Positive feedback: {this.countPositiveFeedbackPercentage(this.state)}%
+        </p>
+        <GlobalStyle />
+      </Layout>
     );
   }
 }
