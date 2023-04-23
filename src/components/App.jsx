@@ -62,8 +62,8 @@ export class App extends Component {
 }
 
 //ще один варіант розмітки
-{
-  /* <h2>Statistics</h2>
+
+/* <h2>Statistics</h2>
     <ul>
       {Object.entries(this.state).map(name => (
         <li key={name[0]}>
@@ -75,4 +75,3 @@ export class App extends Component {
     <p>
       Positive feedback: {this.countPositiveFeedbackPercentage(this.state)}%
     </p> */
-}
