@@ -1,9 +1,10 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { GlobalStyle } from './BasicStyles/GlobalStyle';
 import { Layout } from './Layout/Layout';
 
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Statistics } from './Statistics/Statistics';
 
 export class App extends Component {
   state = {
@@ -33,6 +34,8 @@ export class App extends Component {
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
+
     return (
       <Layout>
         <Section title="Please leave feedback">
@@ -40,26 +43,36 @@ export class App extends Component {
             options={Object.keys(this.state)}
             onLeaveFeedback={this.onLeaveFeedback}
           />
-          {/* {Object.keys(this.state).map(name => (
-            <button key={name} name={name} onClick={this.onLeaveFeedback}>
-              {name}
-            </button>
-          ))} */}
         </Section>
-        <h2>Statistics</h2>
-        <ul>
-          {Object.entries(this.state).map(name => (
-            <li key={name[0]}>
-              {name[0]} : {name[1]}
-            </li>
-          ))}
-        </ul>
-        <p>Total: {this.countTotalFeedback(this.state)}</p>
-        <p>
-          Positive feedback: {this.countPositiveFeedbackPercentage(this.state)}%
-        </p>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback(this.state)}
+            positivePercentage={this.countPositiveFeedbackPercentage(
+              this.state
+            )}
+          ></Statistics>
+        </Section>
         <GlobalStyle />
       </Layout>
     );
   }
+}
+
+//ще один варіант розмітки
+{
+  /* <h2>Statistics</h2>
+    <ul>
+      {Object.entries(this.state).map(name => (
+        <li key={name[0]}>
+          {name[0]} : {name[1]}
+        </li>
+      ))}
+    </ul>
+    <p>Total: {this.countTotalFeedback(this.state)}</p>
+    <p>
+      Positive feedback: {this.countPositiveFeedbackPercentage(this.state)}%
+    </p> */
 }
