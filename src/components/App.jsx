@@ -39,23 +39,3 @@ export class App extends Component {
     );
   }
 }
-// {
-//   items.map(({ id, type, amount, currency }, index) => (
-//     <Tr key={id} index={index}>
-//       <td>{type}</td>
-//       <td>{amount}</td>
-//       <td>{currency}</td>
-//     </Tr>
-//   ));
-// }
-// {
-//   Object.keys(this.state).map(option => (
-//     <Button key={option} name={option} onClick={addFeedback}>
-//       {option}
-//     </Button>
-//   ));
-// }
-// <FeedbackOption
-//   options={Object.keys(this.state)}
-//   addFeedback={this.addFeedback}
-// />;
