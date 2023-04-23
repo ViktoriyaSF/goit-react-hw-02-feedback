@@ -6,6 +6,7 @@ export const ContainerStyl = styled.div`
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
+  background-color: #bceeae;
 
   @media screen and (min-width: 480px) {
     max-width: 480px;
