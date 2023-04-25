@@ -37,3 +37,18 @@ Statistics.propTypes = {
   total: propTypes.number.isRequired,
   positivePercentage: propTypes.number.isRequired,
 };
+
+//варіант внутрі зробити
+// import { Notification } from 'components/Notification/Notification';
+// return total ? (
+//   <Statictic>
+//     <li>Good: <span>{good}</span></li>
+//     <li>Neutral: <span>{neutral}</span></li>
+//     <li>Bad: <span>{bad}</span></li>
+//     <li>Total: <span>{total}</span></li>
+//     <li>Positive feedback: <span>{positivePercentage} %</span>
+//     </li>
+//   </Statictic>
+// ) : (
+//   <Notification message="There is no feedback" />
+// );
