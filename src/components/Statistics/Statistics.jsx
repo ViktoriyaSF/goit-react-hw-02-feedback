@@ -49,6 +49,4 @@ Statistics.propTypes = {
 //     <li>Positive feedback: <span>{positivePercentage} %</span>
 //     </li>
 //   </Statictic>
-// ) : (
-//   <Notification message="There is no feedback" />
-// );
+// ) : (<Notification message="There is no feedback" />);
